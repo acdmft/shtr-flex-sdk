@@ -14,7 +14,7 @@ export default function NavigationMenu() {
             </BreadcrumbItem>
         
             <BreadcrumbItem>
-            <BreadcrumbLink as={Link} to='listings'>Listings</BreadcrumbLink>
+            <BreadcrumbLink as={Link} to='/listings'>Listings</BreadcrumbLink>
             </BreadcrumbItem>
         
             <BreadcrumbItem isCurrentPage>
