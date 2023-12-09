@@ -1,10 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import About from "./components/About/About";
 import Landing from "./components/Landing/Landing";
 import Listings from "./components/Listings/Listings";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import ListingDetail from "./components/ListingDetail/ListingDetail";
 
 function App() {
   return (
@@ -33,6 +33,9 @@ function App() {
           <Switch>
             <Route path="/about">
               <About />
+            </Route>
+            <Route path="/listings/:listingId">
+              <ListingDetail />
             </Route>
             <Route path="/listings">
               <Listings />
