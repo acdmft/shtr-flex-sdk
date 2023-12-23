@@ -1,0 +1,9 @@
+version: "2"
+services:
+  nginx-react:
+    container_name: nginx-react
+    image: stgmft/shtr-front:latest
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: production      
