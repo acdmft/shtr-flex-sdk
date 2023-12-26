@@ -15,7 +15,6 @@ function App() {
     <ChakraProvider>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1>Welcome to Sharetribe!</h1>
         </header>
         <div style={{ height: "50em" }}>
