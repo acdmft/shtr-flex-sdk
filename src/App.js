@@ -1,16 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { ChakraProvider } from '@chakra-ui/react';
-
+import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import About from "./components/About/About";
-import Landing from "./components/Landing/Landing";
-import Listings from "./components/Listings/Listings";
-import ListingDetail from "./components/ListingDetail/ListingDetail";
+import About from "./pages/About/About";
+import Landing from "./pages/Landing/Landing";
+import Listings from "./pages/Listings/Listings";
+import ListingDetail from "./pages/ListingDetail/ListingDetail";
+import ConnectPage from "./pages/Connect/Connect";
 import NavigationMenu from "./components/Navigation/Navigation";
-
-
 
 function App() {
   return (
@@ -22,7 +20,7 @@ function App() {
         </header>
         <div style={{ height: "50em" }}>
           <BrowserRouter>
-          <NavigationMenu />
+            <NavigationMenu />
             <Switch>
               <Route path="/about">
                 <About />
@@ -32,6 +30,9 @@ function App() {
               </Route>
               <Route path="/listings">
                 <Listings />
+              </Route>
+              <Route path="/connect">
+                <ConnectPage />
               </Route>
               <Route path="/">
                 <Landing />

@@ -21,6 +21,11 @@ export default function NavigationMenu() {
             <BreadcrumbLink as={Link} to='/about'>About</BreadcrumbLink>
             <BreadcrumbSeparator />
             </BreadcrumbItem>
+
+            <BreadcrumbItem isCurrentPage>
+            <BreadcrumbLink as={Link} to='/connect'>Connect</BreadcrumbLink>
+            <BreadcrumbSeparator />
+            </BreadcrumbItem>
         </Breadcrumb>
     )
 }
