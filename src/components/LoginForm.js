@@ -1,22 +1,28 @@
-import { Button, Checkbox, FormControl, FormLabel, Input, Link, VStack } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, Link, VStack } from '@chakra-ui/react';
 
 const LoginForm = () => {
   return (
-    <VStack spacing={4}>
-      <FormControl id="email">
-        <FormLabel>Email address</FormLabel>
-        <Input type="email" />
-      </FormControl>
+    <Box width="30%" minWidth="350px" marginX="auto">
+      <VStack spacing={3}>
+        <FormControl id="email" isRequired>
+          <FormLabel fontSize="sm">Email address</FormLabel>
+          <Input type="email" size="sm" />
+        </FormControl>
 
-      <FormControl id="password">
-        <FormLabel>Password</FormLabel>
-        <Input type="password" />
-      </FormControl>
+        <FormControl id="password" isRequired>
+          <FormLabel fontSize="sm">Password</FormLabel>
+          <Input type="password" size="sm" />
+        </FormControl>
 
-      <Button colorScheme="blue">Login</Button>
-
-      <Link href="/forgot-password" color="teal.500">Forgot password?</Link>
-    </VStack>
+        <Box pt={2} width="full"> {/* Added padding top */}
+          <Button colorScheme="blue" size="sm" width="full">Login</Button>
+          <Box height={2} />
+          <Link href="/forgot-password" color="teal.500" fontSize="sm">
+            Forgot password?
+          </Link>
+        </Box>
+      </VStack>
+    </Box>
   );
 };
 
