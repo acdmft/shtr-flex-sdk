@@ -44,11 +44,11 @@ export default function userReducer(state = initialState, action) {
 }
 
 // Action Creators
-export const login = (credentials) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     sdk.authInfo().then((authinfo)=> {
         console.log('authinfo', authinfo);
-        return sdk.login(credentials)
+        return sdk.login({username, password})
     }).then((resp) => {
         console.log('resp ', resp);
     }).catch((err)=>{

@@ -18,7 +18,7 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     // console.log("handleSubmit");
     e.preventDefault();
-    dispatch(login(credentials));
+    dispatch(login(credentials.email, credentials.password));
   };
   const handleChange = (e) => {
     // console.log('handleChane ', e.target.value)
