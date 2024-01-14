@@ -14,7 +14,7 @@ import { login } from "../ducks/auth.duck";
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
-
+    
   const handleSubmit = (e) => {
     // console.log("handleSubmit");
     e.preventDefault();
@@ -24,6 +24,9 @@ const LoginForm = () => {
     // console.log('handleChane ', e.target.value)
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  
+
   return (
     <Box width="30%" minWidth="350px" marginX="auto" as="form" onSubmit={handleSubmit}>
       <VStack spacing={3}>
