@@ -38,8 +38,12 @@ export default function userReducer(state = initialState, action) {
                 logoutError: null,
                 signupError: null,
               };
+        case LOGIN_SUCCESS:
+            return { ...state, loginInProgress: false, isAuthenticated: true };
         case SIGNUP_REQUEST:
-            return { ...state, }
+            return { ...state, signupInProgress: true, loginError: null, signupError: null}
+        default:
+            return state;
     }
 }
 
@@ -50,6 +54,7 @@ export const login = (username, password) => async (dispatch) => {
         console.log('authinfo', authinfo);
         return sdk.login({username, password})
     }).then((resp) => {
+        dispatch({ type: LOGIN_SUCCESS })
         console.log('resp ', resp);
     }).catch((err)=>{
         console.log('error ', err);
@@ -64,4 +69,18 @@ export const signup = (credentials) => async (dispatch) => {
     .then((resp)=> console.log('signup res', resp) )
     .catch((err) => console.log('error ', err))
 
+}
+
+export const authInfo = () => {
+    // return "test"
+    sdk.authInfo().then(authInfo => {
+        if (authInfo && authInfo.isAnonymous === false) {
+          console.log("User is logged in.");
+            return "is logged in"
+        } else {
+            return "is not logged in"
+        //   console.log("User is NOT logged in.")
+        }
+        // return authInfo && authInfo.isAnonymous;
+      })
 }
