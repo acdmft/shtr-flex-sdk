@@ -4,10 +4,24 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { logout } from '../../ducks/auth.duck';
+import { useDispatch } from "react-redux";
+
 
 export default function NavigationMenu() {
+  function handleLogout() {
+    // console.log("handleLogout ")
+    dispatch(logout());
+  }
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
   console.log('isAuthenticated ', isAuthenticated)
   return (
@@ -32,10 +46,19 @@ export default function NavigationMenu() {
       </BreadcrumbItem>
       {isAuthenticated ? (
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink as={Link} to="/">
-            Profile
-          </BreadcrumbLink>
-          <BreadcrumbSeparator />
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              Profile
+            </MenuButton>
+            <MenuList>
+              <MenuItem as={Link} to="/account-info">
+                Account Info
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                Logout
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </BreadcrumbItem>
       ) : (
         <BreadcrumbItem isCurrentPage>

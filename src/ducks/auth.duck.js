@@ -10,6 +10,9 @@ const LOGIN_ERROR = 'user/LOGIN_ERROR';
 const SIGNUP_REQUEST = 'user/SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'user/SIGNUP_SUCCESS';
 const SIGNUP_ERROR = 'user/SIGNUP_ERROR';
+const LOGOUT_REQUEST = 'app/auth/LOGOUT_REQUEST';
+const LOGOUT_SUCCESS = 'app/auth/LOGOUT_SUCCESS';
+const LOGOUT_ERROR = 'app/auth/LOGOUT_ERROR';
 
 // Initial State
 const initialState = {
@@ -21,6 +24,7 @@ const initialState = {
     loginInProgress: false,
     // logout
     logoutError: null,
+    logoutInProgress: false,
     // signup
     signupError: null,
     signupInProgress: false,
@@ -29,7 +33,8 @@ const initialState = {
 
 // Reducer
 export default function userReducer(state = initialState, action) {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case LOGIN_REQUEST:
             return {
                 ...state,
@@ -42,9 +47,13 @@ export default function userReducer(state = initialState, action) {
             return { ...state, loginInProgress: false, isAuthenticated: true };
         case SIGNUP_REQUEST:
             return { ...state, signupInProgress: true, loginError: null, signupError: null}
-            case 'SIGNUP_SUCCESS':
-                return {...state, isAuthenticated: true };
-            default:
+        case LOGOUT_REQUEST:
+            return { ...state, logoutInProgress: true, loginError: null, logoutError: null };
+        case LOGOUT_SUCCESS:
+            return { ...state, logoutInProgress: false, isAuthenticated: false, authScopes: [] };
+        case LOGOUT_ERROR:
+            return { ...state, logoutInProgress: false, logoutError: payload };
+        default:
             return state;
     }
 }
@@ -74,6 +83,19 @@ export const signup = (credentials) => async (dispatch) => {
      })
     .catch((err) => console.log('error ', err));
 
+}
+
+export const logout = () => async (dispatch) => {
+    dispatch({ type: LOGOUT_REQUEST });
+    sdk.logout()
+    .then((logoutRes) => {
+        dispatch({ type: LOGOUT_SUCCESS });
+        console.log("Logged out");
+    })
+    .catch((err) => {
+        dispatch({ type: LOGOUT_ERROR })
+        console.log(`Request failed with status ${err.status} ${err.statusText}`);
+    })
 }
 
 export const authInfo = () => {
