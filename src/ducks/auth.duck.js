@@ -42,7 +42,9 @@ export default function userReducer(state = initialState, action) {
             return { ...state, loginInProgress: false, isAuthenticated: true };
         case SIGNUP_REQUEST:
             return { ...state, signupInProgress: true, loginError: null, signupError: null}
-        default:
+            case 'SIGNUP_SUCCESS':
+                return {...state, isAuthenticated: true };
+            default:
             return state;
     }
 }
@@ -66,8 +68,11 @@ export const login = (username, password) => async (dispatch) => {
 export const signup = (credentials) => async (dispatch) => {
     dispatch({ type: SIGNUP_REQUEST });
     sdk.currentUser.create(credentials)
-    .then((resp)=> console.log('signup res', resp) )
-    .catch((err) => console.log('error ', err))
+    .then((resp)=> {
+        console.log('signup res', resp);
+        dispatch({ type: SIGNUP_SUCCESS });
+     })
+    .catch((err) => console.log('error ', err));
 
 }
 
