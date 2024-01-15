@@ -10,15 +10,22 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { login } from "../ducks/auth.duck";
+import { useHistory } from 'react-router-dom';
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
+  const history = useHistory();
     
   const handleSubmit = (e) => {
     // console.log("handleSubmit");
     e.preventDefault();
-    dispatch(login(credentials.email, credentials.password));
+    try {
+      dispatch(login(credentials.email, credentials.password));
+      history.push('/');
+    } catch (err) {
+      console.log(err)
+    }
   };
   const handleChange = (e) => {
     // console.log('handleChane ', e.target.value)

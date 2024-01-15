@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signup } from "../ducks/auth.duck";
-import { fireEvent } from "@testing-library/react";
+import { useHistory } from 'react-router-dom';
 
 const SignupForm = () => {
   const [userInfo, setUserInfo] = useState({
@@ -19,11 +19,17 @@ const SignupForm = () => {
     firstName: "",
     lastName: "",
   })
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted with: ", userInfo);
-    dispatch(signup(userInfo))
+    try { 
+      dispatch(signup(userInfo));
+      history.push('/');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleChange = (e) => {
