@@ -46,7 +46,9 @@ export default function userReducer(state = initialState, action) {
         case LOGIN_SUCCESS:
             return { ...state, loginInProgress: false, isAuthenticated: true };
         case SIGNUP_REQUEST:
-            return { ...state, signupInProgress: true, loginError: null, signupError: null}
+            return { ...state, signupInProgress: true, loginError: null, signupError: null };
+        case SIGNUP_SUCCESS:
+            return { ...state, signupInProgress: false, signupError: null, isAuthenticated: true };
         case LOGOUT_REQUEST:
             return { ...state, logoutInProgress: true, loginError: null, logoutError: null };
         case LOGOUT_SUCCESS:
