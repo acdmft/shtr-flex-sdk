@@ -25,24 +25,24 @@ export default function NavigationMenu() {
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
   console.log('isAuthenticated ', isAuthenticated)
   return (
-    <Breadcrumb>
+    <Breadcrumb spacing="8px" separator={<BreadcrumbSeparator color="gray.500" />}>
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/">
+        <BreadcrumbLink as={Link} to="/" color="blue.500" fontWeight="medium">
           Home
         </BreadcrumbLink>
       </BreadcrumbItem>
 
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/listings">
+        <BreadcrumbLink as={Link} to="/listings" color="blue.500" fontWeight="medium">
           Listings
         </BreadcrumbLink>
       </BreadcrumbItem>
 
       <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink as={Link} to="/about">
+        <BreadcrumbLink as={Link} to="/about" color="blue.500" fontWeight="medium">
           About
         </BreadcrumbLink>
-        <BreadcrumbSeparator />
+        {/* <BreadcrumbSeparator /> */}
       </BreadcrumbItem>
       {isAuthenticated ? (
         <BreadcrumbItem isCurrentPage>
@@ -62,10 +62,10 @@ export default function NavigationMenu() {
         </BreadcrumbItem>
       ) : (
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink as={Link} to="/connect">
+          <BreadcrumbLink as={Link} to="/connect" color="blue.500" fontWeight="medium">
             Connect
           </BreadcrumbLink>
-          <BreadcrumbSeparator />
+          {/* <BreadcrumbSeparator /> */}
         </BreadcrumbItem>
       )}
     </Breadcrumb>
